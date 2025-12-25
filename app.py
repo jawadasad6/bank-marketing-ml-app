@@ -1,15 +1,18 @@
 import os
+import streamlit as st   # Make sure this is here
+import pandas as pd
 import joblib
 import pickle
 
-# Get the folder where app.py lives
+# Base directory of the script
 BASE_DIR = os.path.dirname(__file__)
 
-# Load model, scaler, columns using full paths
+# Load model and preprocessing files
 model = joblib.load(os.path.join(BASE_DIR, "rf_bank_model.pkl"))
 scaler = joblib.load(os.path.join(BASE_DIR, "scaler.pkl"))
 with open(os.path.join(BASE_DIR, "columns.pkl"), "rb") as f:
     model_columns = pickle.load(f)
+
 
 
 st.write("Upload a CSV file with the same columns as training data.")
