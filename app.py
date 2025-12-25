@@ -1,15 +1,16 @@
-import streamlit as st
-import pandas as pd
+import os
 import joblib
 import pickle
 
-st.title("Bank Marketing Prediction")
+# Get the folder where app.py lives
+BASE_DIR = os.path.dirname(__file__)
 
-# Load model and preprocessing objects
-model = joblib.load("rf_bank_model.pkl")
-scaler = joblib.load("scaler.pkl")
-with open("columns.pkl", "rb") as f:
+# Load model, scaler, columns using full paths
+model = joblib.load(os.path.join(BASE_DIR, "rf_bank_model.pkl"))
+scaler = joblib.load(os.path.join(BASE_DIR, "scaler.pkl"))
+with open(os.path.join(BASE_DIR, "columns.pkl"), "rb") as f:
     model_columns = pickle.load(f)
+
 
 st.write("Upload a CSV file with the same columns as training data.")
 
